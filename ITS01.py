@@ -1,23 +1,19 @@
-
 import random
 import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-
 def calcHist(tdata):
     hist = [0] * 10
     for i in range(0, len(tdata)):
-        a = tdata[i]
-        hist(tdata[i] // 100) += 1
-    #print(hist)
+        hist[tdata[i] // 100] += 1
     return hist
 
 def funcRandomNumbers():
     data=[random.randint(0, 999) for i in range(1000000)]
     #print("Значения массива случайных чисел",data)
     return data
-tdata=funcRandomNumbers()
+
 
 def initListWithRandomNumbers():
     rand_list = []
@@ -30,7 +26,6 @@ def Time(Ttime):
     for i in range(Ttime):
         start = time.time()
         calcHist(tdata)
-        #hist = calcHist(tdata=[random.randint(0, 999) for i in range(1000000)])
         end = time.time()
         mean=end-start
         listTime.append(mean)
@@ -55,15 +50,14 @@ def gisto(hist):
     plt.title("Гистограмма распределения")
     plt.xlabel("Интервалы")
     plt.ylabel("'Элементы")
-    # fig.set_figheight(5)
-    # fig.set_figwidth(10)
-
     plt.grid()
     plt.show()
 
-gisto(calcHist(tdata))
 
-calcHist(tdata)
+tdata=funcRandomNumbers()
+gisto(calcHist(tdata))
+hist=calcHist(tdata)
+print(hist)
 listTime=[]
 Time(100)
 calcInfo(listTime=listTime)
